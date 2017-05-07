@@ -3,6 +3,8 @@
 	monthly();
 
 	function monthly(){
+
+		global $ERR_MSG;
 		$json_response=array();
 		$json_response['status']="ERROR";
 
@@ -24,6 +26,26 @@
 		$field12=fetch($_POST,"field12");
 		$field13=fetch($_POST,"field13");
 		$field14=fetch($_POST,"field14");
+
+		// Validate ALL parameters
+		if (!validate("Field1",$field1,1,1000,"varchar") ||
+			!validate("Field2",$field2,1,1000,"varchar") ||
+			!validate("Field3",$field3,1,1000,"varchar") ||
+			!validate("Field4",$field4,1,1000,"varchar") ||
+			!validate("Field5",$field5,1,1000,"varchar") ||
+			!validate("Field6",$field6,1,1000,"varchar") ||
+			!validate("Field7",$field7,1,1000,"varchar") ||
+			!validate("Field8",$field8,1,1000,"varchar") ||
+			!validate("Field9",$field9,1,1000,"varchar") ||
+			!validate("Field10",$field10,1,1000,"varchar") ||
+			!validate("Field11",$field11,1,1000,"varchar") ||
+			!validate("Field12",$field12,1,1000,"varchar") ||
+			!validate("Field13",$field13,1,1000,"varchar") ||
+			!validate("Field14",$field14,1,1000,"varchar") ) {
+			$json_response['message']=$ERR_MSG;
+			echo json_encode($json_response);
+			return;
+		}
 
 //		$from="md.huzaifah1218@gmail.com";
 		$from="mohammedirfan655@gmail.com";
