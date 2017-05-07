@@ -47,10 +47,10 @@
 			return;
 		}
 
-//		$from="md.huzaifah1218@gmail.com";
-		$from="mohammedirfan655@gmail.com";
-//		$to="md.huzaifah1218@gmail.com";
-		$to="mohammedirfan655@gmail.com";
+		$from="md.huzaifah1218@gmail.com";
+//		$from="mohammedirfan655@gmail.com";
+		$to="md.huzaifah1218@gmail.com";
+//		$to="mohammedirfan655@gmail.com";
 
 		ob_start();
 		include('monthly_data.html');
