@@ -18,6 +18,34 @@
 		$headers .= "CC: $cc\r\n";   
 		$headers .= "Content-type: text/html\r\n";
 
+		require_once 'mailer/PHPMailerAutoload.php';
+		$mail = new PHPMailer();
+		$mail->IsSMTP(); // telling the class to use SMTP
+		$mail->SMTPAuth = true; // enable SMTP authentication
+		//$mail->SMTPSecure = "ssl"; // sets the prefix to the servier
+		$mail->Host = "smtp.gmail.com"; // sets GMAIL as the SMTP server
+		$mail->Port = 587; // set the SMTP port for the GMAIL server
+		$mail->Username = "mohammedirfan655@gmail.com"; // GMAIL username
+		$mail->Password = "Insert12#"; // GMAIL password
+
+		//Typical mail data
+		$to_array = array();
+		$to_array = explode(',',$to);
+		for( $j=0 ; $j<count($to_array) ; $j++ ) {
+			$mail->AddAddress($to_array[$j]);
+		}
+		$mail->SetFrom($from);
+		$mail->Subject = $subject;
+		$mail->Body = $message;
+		$mail->IsHTML(true);
+
+		try{
+			$mail->Send();
+			return true;
+		} catch(Exception $e){
+			return false;
+		}
+
 		return mail($to, $subject, $message, $headers);
 	}
 
