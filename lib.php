@@ -173,6 +173,9 @@
 		return true;
 	}
 
-	
+	function md5_encrypt($data){
+		return md5("TARIQAT".$data);
+	}
+
 
 ?>

@@ -19,7 +19,7 @@
 		$conn->close();
 	}
 
-	function execute($query){
+	function execute($query,$DML=false){
 		global $ERR_MSG;
 		global $conn;
 
@@ -27,8 +27,6 @@
 		$resp = array("STATUS"=>"ERROR");	// For DMLs
 		$resp[0]['STATUS']="ERROR";			// For Selects
 		$ERR_MSG="There was an error proccessing your request. Please check and try again";
-
-
 
 		// INIT STATEMENT
 		if ( !$stmt = mysqli_stmt_init($conn) ) {
@@ -52,6 +50,18 @@
 			mysqli_stmt_close($stmt);			// Close statement
 			return $resp;
 		}
+
+		if ($DML) {
+			unset($resp[0]);
+			$error_message="";
+			$resp["STATUS"]="OK";
+			$resp["EXECUTE_STATUS"]=$status;
+			$resp["NROWS"]=$conn->affected_rows;
+			$resp["INSERT_ID"]=$conn->insert_id;
+			mysqli_stmt_close($stmt);			// Close statement
+			return $resp;
+		}
+
 
 		// SELECT
 		$result_set = mysqli_stmt_result_metadata($stmt);
@@ -85,6 +95,17 @@
 		mysqli_stmt_close($stmt);			// Close statement
 
 		return  $results;
+	}
+
+	function refValues($arr){
+		if (strnatcmp(phpversion(),'5.3') >= 0) //Reference is required for PHP 5.3+
+		{
+			$refs = array();
+			foreach($arr as $key => $value)
+				$refs[$key] = &$arr[$key];
+			return $refs;
+		}
+		return $arr;
 	}
 
 	
