@@ -6,12 +6,13 @@
 	include "lib.php";
 	include "connection.php";
 	include "model.php";
+	define("FROM","mohammedirfan655@gmail.com");
 
 	$REQ=fetch($_POST,"req");
 
 	db_connect();
 
-	if( fetch($_SESSION,"email_id") == "" && $REQ != 'login' && fetch($_COOKIE,'login_session')!='' ){
+	if( fetch($_SESSION,"email_id") == "" && ($REQ != 'login' || $REQ != 'register' ) && fetch($_COOKIE,'login_session')!='' ){
 		login(fetch($_COOKIE,'login_session'));
 	}
 
@@ -23,6 +24,9 @@
 		case "login" :
 			login();
 			break;
+		case "forgot_password" :
+			forgot_password();
+			break;
 		case "profile" :
 			profile();
 			break;
@@ -32,11 +36,17 @@
 		case "change_password" :
 			change_password();
 			break;
-		case "jumma" :
-			jumma();
+		case "daily" :
+			daily();
 			break;
 		case "monthly" :
 			monthly();
+			break;
+		case "jumma" :
+			jumma();
+			break;
+		case "app_update_check" :
+			app_update_check();
 			break;
 	}
 
