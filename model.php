@@ -361,7 +361,6 @@
 			!validate("Field2",$field2,1,1000,"varchar") ||
 			!validate("Field3",$field3,1,1000,"varchar") ||
 			!validate("Field4",$field4,1,1000,"varchar") ||
-			!validate("Field5",$field5,1,1000,"varchar") ||
 			!validate("Field6",$field6,1,1000,"varchar") ||
 			!validate("Field7",$field7,1,1000,"varchar") ||
 			!validate("Field8",$field8,1,1000,"varchar") ||
@@ -387,6 +386,33 @@
 			!validate("Field20",$field28,1,1000,"varchar") ||
 			!validate("Field29",$field29,1,1000,"varchar") ) {
 			$json_response['message']=$ERR_MSG;
+			echo json_encode($json_response);
+			return;
+		}
+
+		$resp=execute(
+						"SELECT user_id FROM tUser WHERE `email_id`='$email_id'"
+					,false);
+		if ( $resp[0]['STATUS'] == "ERROR" || $resp[0]['NROWS'] == 0 ) {
+			$json_response["message"]="There was an error submitting monthly form, please try again later.(Code:1010)";
+			echo json_encode($json_response);
+			return;
+		}
+		$user_id=$resp[0]['user_id'];
+
+		$value="{field1:$field1,field2:$field2,field3:$field3,field4:$field4,field5:$field5,field6:$field6,field7:$field7,field8:$field8,field9:$field9,field10:$field10,field11:$field11,field12:$field12,field13:$field13,field14:$field14,field15:$field15,field16:$field16,field17:$field17,field18:$field18,field19:$field19,field20:$field20,field21:$field21,field22:$field22,field23:$field23,field24:$field24,field25:$field25,field26:$field26,field27:$field27,field28:$field28,field29:$field29}";
+		$resp=execute(
+						"INSERT INTO tData ( `type`,`user_id`,`value`) VALUES ( 'monthly','$user_id','$value' )"
+					,true);
+		if ( $resp['STATUS'] == "ERROR" ) {
+			switch($resp['SQL_ERROR_CODE']) {
+				case 1062 :
+					$json_response["message"]="You have already submitted the monthly form";
+					break;
+				default :
+					$json_response["message"]="There was an error submitting monthly form, please try again later.";
+					break;
+			}
 			echo json_encode($json_response);
 			return;
 		}
@@ -420,8 +446,6 @@
 		$field15=fetch($_POST,"field15");
 
 		$email_id=fetch($_POST,"email_id");
-		print_r($_POST);
-		exit;
 
 		// Validate ALL parameters
 		if (!validate("Email ID",$email_id,5,100,"EMAIL") ||
@@ -441,6 +465,33 @@
 			!validate("Field14",$field14,1,1000,"varchar") ||
 			!validate("Field15",$field15,1,1000,"varchar") ) {
 			$json_response['message']=$ERR_MSG;
+			echo json_encode($json_response);
+			return;
+		}
+
+		$resp=execute(
+						"SELECT user_id FROM tUser WHERE `email_id`='$email_id'"
+					,false);
+		if ( $resp[0]['STATUS'] == "ERROR" || $resp[0]['NROWS'] == 0 ) {
+			$json_response["message"]="There was an error submitting daily form, please try again later.(Code:1011)";
+			echo json_encode($json_response);
+			return;
+		}
+		$user_id=$resp[0]['user_id'];
+
+		$value="{field1:$field1,field2:$field2,field3:$field3,field4:$field4,field5:$field5,field6:$field6,field7:$field7,field8:$field8,field9:$field9,field10:$field10,field11:$field11,field12:$field12,field13:$field13,field14:$field14,field15:$field15}";
+		$resp=execute(
+						"INSERT INTO tData ( `type`,`user_id`,`value`) VALUES ( 'daily','$user_id','$value' )"
+					,true);
+		if ( $resp['STATUS'] == "ERROR" ) {
+			switch($resp['SQL_ERROR_CODE']) {
+				case 1062 :
+					$json_response["message"]="You have already submitted the daily form";
+					break;
+				default :
+					$json_response["message"]="There was an error submitting daily form, please try again later.";
+					break;
+			}
 			echo json_encode($json_response);
 			return;
 		}
@@ -469,6 +520,33 @@
 			!validate("Field2",$field2,1,1000,"varchar") ||
 			!validate("Field3",$field3,1,1000,"varchar") ) {
 			$json_response['message']=$ERR_MSG;
+			echo json_encode($json_response);
+			return;
+		}
+
+		$resp=execute(
+						"SELECT user_id FROM tUser WHERE `email_id`='$email_id'"
+					,false);
+		if ( $resp[0]['STATUS'] == "ERROR" || $resp[0]['NROWS'] == 0 ) {
+			$json_response["message"]="There was an error submitting jumma form, please try again later.(Code:1012)";
+			echo json_encode($json_response);
+			return;
+		}
+		$user_id=$resp[0]['user_id'];
+
+		$value="{field1:$field1,field2:$field2,field3:$field3}";
+		$resp=execute(
+						"INSERT INTO tData ( `type`,`user_id`,`value`) VALUES ( 'jumma','$user_id','$value' )"
+					,true);
+		if ( $resp['STATUS'] == "ERROR" ) {
+			switch($resp['SQL_ERROR_CODE']) {
+				case 1062 :
+					$json_response["message"]="You have already submitted the jumma form";
+					break;
+				default :
+					$json_response["message"]="There was an error submitting jumma form, please try again later.";
+					break;
+			}
 			echo json_encode($json_response);
 			return;
 		}

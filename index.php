@@ -6,13 +6,14 @@
 	include "lib.php";
 	include "connection.php";
 	include "model.php";
-	define("FROM","mohammedirfan655@gmail.com");
+//	define("FROM","mohammedirfan655@gmail.com");
+	define("FROM","talha.tariqat@gmail.com");
 
 	$REQ=fetch($_POST,"req");
 
 	db_connect();
 
-	if( fetch($_SESSION,"email_id") == "" && ($REQ != 'login' || $REQ != 'register' ) && fetch($_COOKIE,'login_session')!='' ){
+	if( fetch($_SESSION,"email_id") == "" && $REQ != 'login' && $REQ != 'register' && fetch($_COOKIE,'login_session')!='' ){
 		login(fetch($_COOKIE,'login_session'));
 	}
 
