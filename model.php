@@ -25,7 +25,7 @@
 			!validate("Occupation",$occupation,1,30,"varchar") ||
 			!validate("Silsila Join date",$silsila_start,0,10,"date") ||
 			!validate("Address",$address,10,500,"varchar") ||
-			!validate("mobile",$mobile,10,10,"int") ) {
+			!validate("mobile",$mobile,10,18,"bigint") ) {
 			$json_response['message']=$ERR_MSG;
 			echo json_encode($json_response);
 			return;
@@ -182,7 +182,7 @@
 			!validate("Occupation",$occupation,1,30,"varchar") ||
 			!validate("Silsila Join date",$silsila_start,0,10,"date") ||
 			!validate("Address",$address,10,500,"varchar") ||
-			!validate("mobile",$mobile,10,10,"varchar") ) {
+			!validate("mobile",$mobile,10,18,"varchar") ) {
 			$json_response['message']=$ERR_MSG;
 			echo json_encode($json_response);
 			return;
@@ -565,6 +565,7 @@
 
 		$ROW=execute("SELECT * FROM tApp WHERE `platform`='android'");
 
+		$ROW[0]['store_url']= $ROW[0]['url'];
 		$json_response["row"]=$ROW;
 		$json_response["status"]="OK";
 		echo json_encode($json_response);
