@@ -1,0 +1,372 @@
+<head>
+	<meta charset="utf-8" />
+	<title>Tariqat Report</title>
+<style type="text/css">
+	@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100);
+
+.main_container {
+  background-color: #3e94ec;
+  font-family: "Roboto", helvetica, arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+	padding: 44px 0 40px 30px;
+	min-width: 3500px;
+}
+
+div.table-title {
+   display: block;
+  margin: auto;
+  padding:5px;
+  width: 100%;
+}
+
+.table-title span {
+	display: block;
+   color: #fafafa;
+   font-size: 16px;
+   font-weight: 400;
+   font-style:normal;
+   font-family: "Roboto", helvetica, arial, sans-serif;
+   text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+   text-transform:uppercase;
+}
+
+
+/*** Table Styles **/
+
+.table-fill {
+  background: white;
+  border-radius:3px;
+  border-collapse: collapse;
+/*  height: 320px;*/
+  margin: auto;
+  max-width: inherit;
+  padding:5px;
+  width: 100%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  animation: float 5s infinite;
+}
+
+#daily_table {
+	width: 2000px;
+	display: inline-table;
+	margin-right: 20px;
+}
+ 
+#monthly_table {
+	width: 3500px;
+	display: inline-table;
+	margin-right: 20px;
+}
+
+th {
+  color:#D5DDE5;;
+  background:#1b1e24;
+  border-bottom:4px solid #9ea7af;
+  border-right: 1px solid #343a45;
+  font-size:12px;
+  font-weight: 100;
+  padding:14px;
+  text-align:left;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  vertical-align:middle;
+}
+
+th:first-child {
+  border-top-left-radius:3px;
+}
+ 
+th:last-child {
+  border-top-right-radius:3px;
+  border-right:none;
+}
+  
+tr {
+  border-top: 1px solid #C1C3D1;
+  border-bottom-: 1px solid #C1C3D1;
+  color:#666B85;
+  font-size:16px;
+  font-weight:normal;
+  text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+}
+ 
+tr:hover td {
+  background:#4E5066;
+  color:#FFFFFF;
+  border-top: 1px solid #22262e;
+  border-bottom: 1px solid #22262e;
+}
+ 
+tr:first-child {
+  border-top:none;
+}
+
+tr:last-child {
+  border-bottom:none;
+}
+ 
+tr:nth-child(odd) td {
+  background:#EBEBEB;
+}
+ 
+tr:nth-child(odd):hover td {
+  background:#4E5066;
+}
+
+tr:last-child td:first-child {
+  border-bottom-left-radius:3px;
+}
+ 
+tr:last-child td:last-child {
+  border-bottom-right-radius:3px;
+}
+ 
+td {
+  background:#FFFFFF;
+  padding: 6px 20px;
+  text-align:left;
+  vertical-align:middle;
+  font-weight:300;
+  font-size:16px;
+  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+  border-right: 1px solid #C1C3D1;
+}
+
+td:last-child {
+  border-right: 0px;
+}
+
+th.text-left {
+  text-align: left;
+}
+
+th.text-center {
+  text-align: center;
+}
+
+th.text-right {
+  text-align: right;
+}
+
+td.text-left {
+  text-align: left;
+}
+
+td.text-center {
+  text-align: center;
+}
+
+td.text-right {
+  text-align: right;
+}
+.description_label div, .description_details div {
+	padding: 2px 4px;
+	border-bottom: 2px solid #ccc;
+}
+.description_label {
+    background-color: #5e6d65;
+    width: 200px;
+    float: left;
+    border-right: 2px solid #ccc;
+    padding: 6px;
+    color: #fff;
+}
+.description_details {
+    background-color: #bd5478;
+    min-width: 800px;
+    float: left;
+    padding: 6px;
+    color: #e4dada;	
+}
+</style>
+</head>
+<div class="main_container">
+	<div class="table-title">
+		<div class="description_label">
+			<div>Name</div>
+			<div>Email ID</div>
+			<div>Mobile</div>
+			<div>Age</div>
+			<div>Qualification</div>
+			<div>Occupation</div>
+			<div>Joined Silsila on</div>
+			<div>Address</div>
+		</div>
+		<div class="description_details">
+			<div><?php if ( fetch($USER_ROW[$j],'name') != "" ) echo fetch($USER_ROW[$j],'name'); else echo "Not filled"; ?></div>
+			<div><?php if ( fetch($USER_ROW[$j],'email_id') != "" ) echo fetch($USER_ROW[$j],'email_id'); else echo "Not filled"; ?></div>
+			<div><?php if ( fetch($USER_ROW[$j],'mobile') != "" ) echo fetch($USER_ROW[$j],'mobile'); else echo "Not filled"; ?></div>
+			<div><?php if ( fetch($USER_ROW[$j],'age') != "" ) echo fetch($USER_ROW[$j],'age'); else echo "Not filled"; ?></div>
+			<div><?php if ( fetch($USER_ROW[$j],'qualificaiton') != "" ) echo fetch($USER_ROW[$j],'qualificaiton'); else echo "Not filled"; ?></div>
+			<div><?php if ( fetch($USER_ROW[$j],'occupation') != "" ) echo fetch($USER_ROW[$j],'occupation'); else echo "Not filled"; ?></div>
+			<div><?php if ( fetch($USER_ROW[$j],'silsila_start') != "" ) echo fetch($USER_ROW[$j],'silsila_start'); else echo "Not filled"; ?></div>
+			<div><?php if ( fetch($USER_ROW[$j],'address') != "" ) echo fetch($USER_ROW[$j],'address'); else echo "Not filled"; ?></div>
+		</div>
+		<div style="clear:both"></div>
+	</div>
+	<br><br>
+			<?php 
+
+				$DATA=$USER_ROW[$j]['data'];
+				$daily_flag=false;$jumma_flag=false;$monthly_flag=false;
+				for ( $m=0;$m<$DATA[0]['NROWS'];$m++ ) {
+					if ( $DATA[$m]['type']=="daily" ) $daily_flag=true;
+					if ( $DATA[$m]['type']=="jumma" ) $jumma_flag=true;
+					if ( $DATA[$m]['type']=="Monthly" ) $monthly_flag=true;
+				}
+			?>
+	<div class="table-title"><span>Daily Form</span></div>
+	<div>
+		<table class="table-fill" id="daily_table">
+			<thead>
+				<tr>
+					<th class="text-left" width="180px">Date / Aamal</th>
+					<th class="text-left">Faraiz Ki pabandi</th>
+					<th class="text-left">Sunnat-e-Muakkadah Ki Pabandi</th>
+					<th class="text-left">Namaz-e-Tahajjud Ki Pabandi</th>
+					<th class="text-left">Namaz Ba Jama'at Ki Pabandi</th>
+					<th class="text-left">Sunnat-e-Ghair Muakkadah Ki Pabandi</th>
+					<th class="text-left">Qadha Namazen Kuch Zimmeh Main Baqi Hain ya Nahi</th>
+					<th class="text-left">Ishraq</th>
+					<th class="text-left">Chast</th>
+					<th class="text-left">Awwabeen</th>
+					<th class="text-left">Deegar Nawafil Ki Pabandi</th>
+					<th class="text-left">Muraqaba Ki Miqdar</th>
+					<th class="text-left">Waqoof-e-Qalbi ka ihtemam</th>
+					<th class="text-left">Istighfar</th>
+					<th class="text-left">Durood Shareef</th>
+					<th class="text-left">Tilawat-e-Kalam-e-Pak ki Youmiya Miqdar</th>
+				</tr>
+			</thead>
+			<tbody class="table-hover">
+			<?php 
+				if ( !$daily_flag ) { ?>
+					<tr>
+						<td colspan="16" class="text-left">No Data Found</td>
+					</tr>
+			<?php } else {
+						for ( $k=0;$k<$DATA[0]['NROWS']&&$DATA[$k]['type']=="daily";$k++ ) {
+							if ( $DATA[$k]['type']=="daily" ) {
+								$field_arr=$DATA[$k]['value'];
+								$field_arr=trim(trim($field_arr,"{"),"}");
+								$field_arr=explode(",",$field_arr);
+						 ?>
+								<tr>
+									<td class="text-left"><?php echo $DATA[$k]['created_dt'];?></td>
+									<?php for($x=0;$x<count($field_arr);$x++) { ?>
+										<td class="text-left"><?php echo explode(":",$field_arr[$x])[1]; ?></td>
+									<?php } ?>
+								</tr>
+						<?php 
+							}
+						}
+				} ?>
+			</tbody>
+		</table>
+	</div>
+
+	<br><br>
+	<div class="table-title"><span>Jumma Form</span></div>
+	<div style="clear: both;"></div>
+	<table class="table-fill" style="float: left;width: 800px;">
+		<thead>
+			<tr>
+				<th class="text-left" width="180px">Date / Aamal</th>
+				<th class="text-left">Surah-e-Kahaf Ki Tilawat</th>
+				<th class="text-left">Salat-ut-Tasbeeh</th>
+				<th class="text-left">Darood Shareef Ki Kathrath</th>
+			</tr>
+		</thead>
+		<tbody class="table-hover">
+			<?php 
+
+				if ( !$jumma_flag ) { ?>
+					<tr>
+						<td colspan="16" class="text-left">No Data Found</td>
+					</tr>
+			<?php } else {
+						for ( $l=0;$l<$DATA[0]['NROWS'];$l++ ) {
+							if ( $DATA[$l]['type']=="jumma" ) {
+								$field_arr=$DATA[$l]['value'];
+								$field_arr=trim(trim($field_arr,"{"),"}");
+								$field_arr=explode(",",$field_arr);
+						 ?>
+								<tr>
+									<td class="text-left"><?php echo $DATA[$l]['created_dt'];?></td>
+									<?php for($x=0;$x<count($field_arr);$x++) { ?>
+										<td class="text-left"><?php echo explode(":",$field_arr[$x])[1]; ?></td>
+									<?php } ?>
+								</tr>
+						<?php 
+							}
+						}
+				} ?>
+		</tbody>
+	</table>
+	<div style="clear: both;"></div>
+
+	<br><br>
+	<div class="table-title"><span>Monthly Form</span></div>
+	<table class="table-fill" id="monthly_table">
+		<thead>
+			<tr>
+				<th class="text-left" width="180px">Date / Aamal</th>
+				<th class="text-left">Walidain ke Saath Husn-e-Sulook</th>
+				<th class="text-left">Beevi/Shouhar Aur Bachchon Ke Saath Husn-e-Sulook</th>
+				<th class="text-left">Ahle Khana ki Tarbiyat ki Fikr(Ghar main deen ki batein)</th>
+				<th class="text-left">Har Moqe ki Sunnat Aur Masnoon Duwa ka ihtemam</th>
+				<th class="text-left">Bhai Behen Aur Rista-e-Daroon ke Saath Sila Rehmi</th>
+				<th class="text-left">Padhosi aur Ahl-e-Mohallah Ke Saath Husn-e-Sulook</th>
+				<th class="text-left">Ilm-e-Deen Seekhne Ki Koshish</th>
+				<th class="text-left">Khilaf-e-Sunnat Wada Qata Se Parhez</th>
+				<th class="text-left">Badnigahi Se Parhez</th>
+				<th class="text-left">Badkhayali Se Parhez</th>
+				<th class="text-left">Jhoot Se Parhez</th>
+				<th class="text-left">Badzubani Se Parhez</th>
+				<th class="text-left">Gheebat Se Parhez</th>
+				<th class="text-left">Har Tarah Ke Zulm Se Parhez</th>
+				<th class="text-left">Tanhaai ke Gunahon Se Parhez</th>
+				<th class="text-left">Har Tarah Ki Khiyanat Se Parhez</th>
+				<th class="text-left">Badzini Se Parhez</th>
+				<th class="text-left">Hasad Se Parhez</th>
+				<th class="text-left">Beja Ghussa Se Parhez</th>
+				<th class="text-left">Waa'da Khilafi Se Parhez</th>
+				<th class="text-left">Mutashatbah Cheezon Se Parhez</th>
+				<th class="text-left">Logon Se Ummeedein Lagane Aur Tama Se Parhez</th>
+				<th class="text-left">Kisi Bhi Musalman Ko Haqeer Samajhne Se Parhez</th>
+				<th class="text-left">Apne Qoul, Fe'l Aur Harkath Se Doosron Ko Takleef Pahunchane Se Parhez</th>
+				<th class="text-left">Dars-o-Tadrees Ya Mulazimat Ke Muta'eenah Augat Mein Doosre Kaam Karne Se Parhez</th>
+				<th class="text-left">Khilaaf-e-Shar'a Baaton Ko Dekh Kar Dil Mein Takleef Hoti Hai Ya Naheen?</th>
+				<th class="text-left">Kaifiat</th>
+				<th class="text-left">Apni Koi Khas Baat</th>
+			</tr>
+		</thead>
+		<tbody class="table-hover">
+			<?php 
+
+				if ( !$monthly_flag ) { ?>
+					<tr>
+						<td colspan="16" class="text-left">No Data Found</td>
+					</tr>
+			<?php } else {
+						for ( $k=0;$k<$DATA[0]['NROWS'];$k++ ) {
+							if ( $DATA[$k]['type']=="monthly" ) {
+								$field_arr=$DATA[$k]['value'];
+								$field_arr=trim(trim($field_arr,"{"),"}");
+								$field_arr=explode(",",$field_arr);
+						 ?>
+								<tr>
+									<td class="text-left"><?php echo $DATA[$k]['created_dt'];?></td>
+									<?php for($x=0;$x<count($field_arr);$x++) { ?>
+										<td class="text-left"><?php echo explode(":",$field_arr[$x])[1]; ?></td>
+									<?php } ?>
+								</tr>
+						<?php 
+							}
+						}
+				} ?>
+		</tbody>
+	</table>
+	<br><br><br><br>
+  </div>

@@ -11,8 +11,6 @@
 
 	function send_email($to,$subject,$message,$from="",$cc="",$reply_to="") {
 
-		if (!$from ) $from = EMAIL_FROM;
-
 		$subject  = "[Tariqat] $subject";
 		$headers  = "From: $from\r\n";
 		$headers .= "CC: $cc\r\n";   
@@ -26,7 +24,7 @@
 		$mail->Host = "smtp.gmail.com"; // sets GMAIL as the SMTP server
 		$mail->Port = 587; // set the SMTP port for the GMAIL server
 		$mail->Username = "mohammedirfan655@gmail.com"; // GMAIL username
-		$mail->Password = "Insert12#"; // GMAIL password
+		$mail->Password = base64_decode("SW5zZXJ0MTIj"); // GMAIL password
 
 		//Typical mail data
 		$to_array = array();
